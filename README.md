@@ -24,7 +24,7 @@ A responsive weather forecast application built with **React.js** and **Vanilla 
 
 ## Preview
 
-![Weather App Screenshot](./screenshot.png)
+![Weather App Screenshot](./images/screenshot.png)
 
 
 
