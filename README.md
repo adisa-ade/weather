@@ -2,7 +2,6 @@
 
 A responsive weather forecast application built with **React.js** and **Vanilla CSS** as part of the **Frontend Mentor 30 Days Hackathon** challenge.
 
----
 
 ## Features
 
@@ -21,26 +20,26 @@ A responsive weather forecast application built with **React.js** and **Vanilla 
 - Users can see hover and focus states for all interactive elements on the page
 - Users can toggle between dark/light mode themes that also adapts to the time of day
 
----
+
 
 ## Preview
 
 ![Weather App Screenshot](./screenshot.png)
 
----
+
 
 ## Built With
 
 - [React.js](https://reactjs.org/) – UI library  
 - Vanilla CSS – for styling (no CSS frameworks used)  
-- [OpenWeatherMap API](https://openweathermap.org/api) *(or whichever API you used)*  
+- [Open-Meteo API](https://open-meteo.com/) 
 
----
+
 
 ## Prerequisites
 Make sure you have **Node.js** and **npm** (or yarn) installed.  
 
----
+
 
 ## Installation
 - Clone the repository:
@@ -50,14 +49,14 @@ Make sure you have **Node.js** and **npm** (or yarn) installed.
 - npm install
 - npm start
 
----
+
 
 ## Learnings
 - Reinforced knowledge of React state management & hooks
 - Practiced API integration & error handling
 - Improved UI layout with Vanilla CSS and responsive design
 
----
+
 
 ## Acknowledgements
 - Frontend Mentor for the design challenge
