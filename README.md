@@ -55,7 +55,6 @@ Make sure you have **Node.js** and **npm** (or yarn) installed.
    ```bash 
    npm start
 
-
 ## Learnings
 - Reinforced knowledge of React state management & hooks
 - Practiced API integration & error handling
