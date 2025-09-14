@@ -45,12 +45,15 @@ Make sure you have **Node.js** and **npm** (or yarn) installed.
 - Clone the repository:
    ```bash
    git clone https://github.com/adisa-ade/weather.git
-- Navigation
+- Navigate to the app:
    ```bash 
    cd weather
+- Install dependencies:
+   ```bash 
    npm install
+- Launch app to browser:
+   ```bash 
    npm start
-
 
 
 ## Learnings
