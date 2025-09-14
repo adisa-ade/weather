@@ -1,6 +1,6 @@
 # Weather App
 
-A responsive weather forecast application built with **React.js** and **Vanilla CSS** as part of the **Frontend Mentor 30 Days Hackathon** challenge.
+A responsive weather forecast application built with **React.js** and **Vanilla CSS** as part of the **[Frontend Mentor](https://frontendmentor.io/) 30 Days Hackathon** challenge.
 
 
 ## Features
