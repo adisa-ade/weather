@@ -11,10 +11,9 @@ function App() {
     <div className="app">
       <Header />
       <h2 className="title">How’s the sky looking today?</h2>
-      <SearchBar />
-      <div>
-      <div className="info-grid">        
-      <div>
+      <SearchBar />      
+      <div className="info-grid">                
+      <div className="left-info-grid">
       <WeatherCard />
       <InfoCards />
       <div>
@@ -25,9 +24,7 @@ function App() {
       <div>          
           <HourlyForecast />
       </div>      
-      </div>
-      </div>
-
+      </div>      
     </div>
   );
 }

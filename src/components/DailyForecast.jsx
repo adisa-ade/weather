@@ -15,7 +15,7 @@ function DailyForecast() {
         <div className="day fade-up" key={i} style={{ animationDelay: `${i * 0.1}s` }}>
           <h2>{d.day}</h2>
           <span>{d.icon}</span>
-          <div>
+          <div className="temperature">
           <span>{d.min}°</span>
           <span> {d.max}°</span>
           </div>
