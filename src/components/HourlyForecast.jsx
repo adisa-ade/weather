@@ -1,5 +1,5 @@
 import Button from "./Button";
-
+import styles from "./HourlyForecast.module.css"
 function HourlyForecast() {
   const hours = [
     { time: "3 PM", temp: 20, icon: "☁️" },
@@ -13,13 +13,13 @@ function HourlyForecast() {
   ];
 
   return (
-    <div className="hourly-forecast">
-      <div className="top">
+    <div className={styles.hourlyForecast}>
+      <div className={styles.top}>
       <h3>Hourly forecast</h3>
       <Button>Tuesday</Button>
       </div>
       {hours.map((h, i) => (
-        <div className="hour slide-in" key={i} style={{ animationDelay: `${i * 0.1}s` }}>
+        <div className={`${styles.hour} slide-in`} key={i} style={{ animationDelay: `${i * 0.1}s` }}>
           <span>
           <span>{h.icon}</span> 
           <span>{h.time}</span>

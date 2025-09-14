@@ -1,3 +1,4 @@
+import styles from "./DailyForecast.module.css"
 function DailyForecast() {
   const days = [
     { day: "Tue", min: 14, max: 20, icon: "🌧️" },
@@ -10,12 +11,12 @@ function DailyForecast() {
   ];
 
   return (
-    <div className="daily-forecast">
+    <div className={styles.dailyForecast}>
       {days.map((d, i) => (
-        <div className="day fade-up" key={i} style={{ animationDelay: `${i * 0.1}s` }}>
+        <div className={`${styles.day} fade-up`} key={i} style={{ animationDelay: `${i * 0.1}s` }}>
           <h2>{d.day}</h2>
           <span>{d.icon}</span>
-          <div className="temperature">
+          <div className={styles.temperature}>
           <span>{d.min}°</span>
           <span> {d.max}°</span>
           </div>

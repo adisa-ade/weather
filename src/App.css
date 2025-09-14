@@ -47,13 +47,7 @@ body {
 .app {
   padding: 20px;
   max-width: 1260px;
-  margin: auto;
-}
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;  
+  margin: auto;    
 }
 
 h2.title {
@@ -64,184 +58,25 @@ h2.title {
   font-weight: var(--font-weight-bold);
 }
 
-.search-bar {
-  display: flex;  
-  position: relative;
-  width: 646px;
-  height: 56px;  
-  gap: 16px;
-  margin: 20px auto 40px auto;    
-  
-}
-.search-bar .input{
-  display: flex;
-  flex: 1;
-  align-items: center;  
-  position: relative;  
-}
-.search-bar input {
+.info-grid {
+  display: grid;          
+  max-width: 1260px;
   width: 100%;  
-  padding: 20px;
-  border-radius: 8px;
-  background-color: var(--neutral-800);    
-  border: none;
-}
-.search-bar input::placeholder {
-  padding-left: 40px;
-  color: var(--neutral-200);
-  font-size: 14px;
-}
-input:not(:placeholder-shown) {
-  padding-left: 60px;
-  color: var(--neutral-200);
-  font-size: 14px;
-}
-input:focus {
-  caret-color: var(--neutral-800);
+  grid-template-columns: 2fr 1fr;        
+  justify-content: center;
+  gap: 32px;
+  margin: 20px  auto;             
 }
 
-.search-bar img{
-  width: 20px;
-  height: 20px;
-  margin-left: 20px;
-  position: absolute;      
-  z-index: 1;
-}
-.search-bar button {
-  padding: 10px 20px;
-  border: none;
-  background: #4a63ff;  
-  color: white;
-  border-radius: 8px;
-  cursor: pointer;
-}
-.info-grid {
-  display: grid;    
-  width: 1216px;
-  height: 693px;  
-  grid-template-columns: 800px 384px;    
-  gap: 32px;
-  margin-top: 20px;        
-}
 .left-info-grid{
   display: flex;  
-  flex-direction: column;
-  justify-content: space-between;    
+  flex-direction: column; 
+  justify-content: space-between;         
+  min-width: 0;  
 }
-/* Weather Card */
-.weather-card {  
-  width: 100%;  
-  height: 286px;
-  background-image: url('./images/bg-today-large.svg');  
-  background-size: cover;  
-  background-repeat: no-repeat;
-  background-position: center;
-  display: flex;  
-  justify-content: space-between;
-  align-items: center;
-  padding: 40px;
-  border-radius: 16px;    
+.info-grid > div {
+  min-width: 0;         
 }
-.weather-card .temperature{
-  display: flex;
-  align-items: center;
-}
-.weather-card .temperature h1{
-  font-size: 96px;  
-  font-style: italic;
-  font-weight: var(--neutral-600);
-}
-.weather-card img{
-  width: 120px;
-  height: 120px;
-}
-
-/* Info Cards */
-.info-cards {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 15px;  
-}
-
-.info-card {
-  width: 182px;
-  height: 118px;
-  background: #1a1a50;
-  padding: 20px;
-  border-radius: 12px;  
-  display: flex;
-  flex-direction: column;  
-  gap: 20px;  
-  align-items: start;
-}
-
-.info-card h4 {
-  margin: 0;
-  font-size: 20px;
-}
-
-.info-card p {
-  margin: 5px 0 0;
-  font-size: 14px;
-  opacity: 0.8;
-}
-
-/* Daily forecast */
-.daily-forecast {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 10px;  
-}
-.day {
-  background: #1a1a50;
-  padding: 16px 10px;
-  width: 101px;
-  height: 165px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  border-radius: 12px;
-  text-align: center;
-}
-.day .temperature{
-  display: flex;
-  justify-content: space-between;
-}
-
-/* Hourly forecast */
-.hourly-forecast {
-  display: flex;
-  flex-direction: column;  
-  height: 693px;  
-  gap: 16px;  
-  background: #1a1a50;
-  padding: 24px;  
-  border-radius: 20px;  
-}
-.hourly-forecast .top{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;  
-}
-.hour {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 60px;  
-  padding: 10px 16px 10px 12px;  
-  background: #2a2a60;
-  border-radius: 8px;
-}
-.hour > span{ 
-  display: flex;
-  gap: 20px;
-}
-.slide-in {
-  opacity: 0;
-  transform: translateX(-20px);
-  animation: slideIn 0.5s ease forwards;
-}
-
 @keyframes slideIn {
   to {
     opacity: 1;
@@ -262,8 +97,9 @@ input:focus {
   }
 }
 
+
 /* Tablet */
-@media (max-width: 48em) {
+@media (max-width: 56.25em) {
   h2.title{
     width: 482px;
     margin: 0 auto;
@@ -276,16 +112,28 @@ input:focus {
     height: 56px;
     padding: 16px 24px;
   }
+  .info-grid{
+    grid-template-columns: none; 
+    grid-template-rows: 720px 665px;      
+  }  
+  .weather-card{
+    width: 95%; 
+  }  
   .info-cards {
-    /* grid-template-columns: 1fr; */
+   grid-template-columns: 1fr;
   }
   .daily-forecast {
     grid-template-columns: repeat(3, 1fr);    
   }
-}
+} 
 
 /* Mobile */
-@media (max-width: 37.5em) {
+ @media (max-width: 37.5em) { 
+  .info-grid{
+    grid-template-columns: none; 
+    grid-template-rows: 1161px 700px;     
+    gap: 20px;
+  }  
   h2.title{
     width: 343px;        
   }  
@@ -299,16 +147,10 @@ input:focus {
   .search-bar button {
     width: 100%;
     padding: 24px 24px;
-  }
-  .weather-card{
-    background-image: url('./images/bg-today-small.svg');  
-  }
-  .daily-forecast {   
-    grid-template-columns: repeat(2, 1fr);   
-  }
+  }  
+ }
+ @media screen and (max-width: 20em) { 
+  h2.title{
+    width: 280px;        
+  }   
 }
-
-
-
-
-

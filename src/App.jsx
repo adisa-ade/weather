@@ -22,7 +22,7 @@ function App() {
       </div>
       </div>      
       <div>          
-          <HourlyForecast />
+      <HourlyForecast />
       </div>      
       </div>      
     </div>

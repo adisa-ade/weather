@@ -24,8 +24,17 @@ A responsive weather forecast application built with **React.js** and **Vanilla 
 
 ## Preview
 
-![Weather App Screenshot](./public/images/screenshot.png)
+### Desktop Screen
+![Desktop Screenshot](./public/images/screenshot.png)
 
+### Tablet Screen
+![Tablet Screenshot](./public/images/darkmode.png)
+
+### Mobile Screen
+![Mobile Screenshot](./public/images/darkmode.png)
+
+### Light Mode
+![Light Mode Screenshot](./public/images/darkmode.png)
 
 
 ## Built With

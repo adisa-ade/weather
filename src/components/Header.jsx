@@ -1,8 +1,8 @@
 import Button from "./Button";
-
+import styles from "./Header.module.css"
 function Header() {
     return (
-      <header className="header">
+      <header className={styles.header}>
         <span className="logo">
           <img src="/images/logo.svg" alt="Logo" />
         </span>

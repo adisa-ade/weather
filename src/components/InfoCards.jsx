@@ -1,5 +1,4 @@
-import { WiThermometer, WiHumidity, WiStrongWind, WiRain } from "react-icons/wi";
-
+import styles from "./InfoCards.module.css"
 function InfoCards() {
   const info = [
     { label: "Feels Like", value: "18°"},
@@ -9,9 +8,9 @@ function InfoCards() {
   ];
 
   return (
-    <div className="info-cards">
+    <div className={styles.infoCards}>
       {info.map((item, i) => (
-        <div className="info-card fade-up" key={i}>          
+        <div className={`${styles.infoCard} fade-up`} key={i}>          
           <p>{item.label}</p>          
           <h4>{item.value}</h4>
         </div>        

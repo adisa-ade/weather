@@ -1,0 +1,45 @@
+/* Weather Card */
+.weatherCard {        
+    height: 286px;    
+    background-image: url('./images/bg-today-large.svg');  
+    background-size: cover;  
+    background-repeat: no-repeat;
+    background-position: center;    
+    display: flex;  
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px;
+    border-radius: 16px;    
+  }
+  .weatherCard .temperature{
+    display: flex;
+    align-items: center;
+  }
+  .weatherCard .temperature h1{
+    font-size: 96px;  
+    font-style: italic;
+    font-weight: var(--neutral-600);
+  }
+  .weatherCard img{
+    width: 120px;
+    height: 120px;
+  }
+  
+  @media screen and (max-width: 37.5em) {
+    .weatherCard {                  
+      display: flex;  
+      flex-direction: column;
+      gap: 20px;
+      justify-content: start;
+      background-image: url('./images/bg-today-small.svg');  
+    }
+    .weatherCard .location{
+      text-align: center;
+    }
+    .weatherCard .location h1{
+      font-size: 1.5rem;   
+    }
+    .weatherCard .temperature h1{
+      font-size: 5rem;  
+    }
+  }

@@ -1,0 +1,43 @@
+/* Info Cards */
+.infoCards {  
+    display: flex;      
+    gap: 20px;  
+  }
+  
+  .infoCard {
+    width: 182px;
+    height: 118px;
+    background: #1a1a50;
+    padding: 20px;
+    border-radius: 12px;  
+    display: flex;    
+    flex-direction: column;  
+    gap: 20px;  
+    align-items: start;
+  }
+  
+  .infoCard h4 {
+    margin: 0;
+    font-size: 20px;
+  }
+  
+  .infoCard p {
+    margin: 5px 0 0;
+    font-size: 14px;
+    opacity: 0.8;
+  }
+  @media screen and (max-width: 37.5em) {
+    .infoCards{    
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .infoCard{
+      width: 160px;
+    }
+  }
+
+  @media screen and (max-width: 20em) { 
+    .infoCard{
+      width: 135px;      
+    }
+  }
