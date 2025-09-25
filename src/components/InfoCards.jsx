@@ -1,10 +1,15 @@
+import { useContext } from "react";
 import styles from "./InfoCards.module.css"
+import WeatherContext from "../context/WeatherContext";
+
 function InfoCards() {
+  const { state} = useContext(WeatherContext);
+  const { loading, weather } = state;     
   const info = [
-    { label: "Feels Like", value: "18°"},
-    { label: "Humidity", value: "46%"},
-    { label: "Wind", value: "14 km/h"},
-    { label: "Precipitation", value: "0 mm"},
+    { label: "Feels Like", value: weather?.current.temperature_2m, unit: weather?.current_units.temperature_2m},
+    { label: "Humidity", value: weather?.current.relative_humidity_2m, unit: weather?.current_units.relative_humidity_2m},
+    { label: "Wind", value: weather?.current.wind_speed_10m, unit: weather?.current_units.wind_speed_10m},
+    { label: "Precipitation", value: weather?.current.precipitation, unit: weather?.current_units.precipitation},
   ];
 
   return (
@@ -12,7 +17,7 @@ function InfoCards() {
       {info.map((item, i) => (
         <div className={`${styles.infoCard} fade-up`} key={i}>          
           <p>{item.label}</p>          
-          <h4>{item.value}</h4>
+          {loading? "---" :<h4>{item.value} {item.unit}</h4>}
         </div>        
       ))}      
     </div>

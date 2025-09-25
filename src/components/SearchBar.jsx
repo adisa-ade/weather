@@ -1,22 +1,22 @@
 import styles from "./SearchBar.module.css"
 import WeatherContext from "../context/WeatherContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 function SearchBar() {
   const { state, fetchWeather, dispatch } = useContext(WeatherContext);
-  const { loading, error, weather, theme, city } = state;
-
+  const { city } = state;
+  const [searchCity, setSearchCity] = useState(city)  
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!city || city.length < 4) return
     if (city.trim()) {
-      fetchWeather(city);
+      fetchWeather(city);      
     }
+    setSearchCity("")
   };
     return (
-      <div className={styles.searchBar}>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className={styles.searchBar}>
         <div className={styles.input}>
-
         <img src="./images/icon-search.svg" alt="Search Icon" />
         <input
           type="text" 
@@ -28,8 +28,7 @@ function SearchBar() {
           />        
         </div>        
         <button>Search</button>        
-          </form>
-      </div>
+          </form>      
     );
   }
   export default SearchBar;
