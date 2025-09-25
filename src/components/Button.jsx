@@ -7,7 +7,12 @@ const baseStyle = {
 function Button({children}) {
   return (
     <button className='units-btn'>        
-        {children}
+        <div className='btn-children'> 
+          {children}          
+          </div>
+          <div>
+          <img src="./images/icon-dropdown.svg" alt="dropdown-icon" />
+          </div>
         </button>
   )
 }
