@@ -10,7 +10,7 @@
     align-items: center;
     padding: 40px;
     border-radius: 16px;    
-  }
+  }  
   .weatherCard .temperature{
     display: flex;
     align-items: center;

@@ -49,13 +49,18 @@
     border-radius: 8px;
     cursor: pointer;
   }
+  @media (max-width: 48em) {
+    .searchBar {      
+      width: 600px;            
+    } 
+  }
   @media (max-width: 37.5em) { 
-    .searchBar {
+   .searchBar {
       flex-direction: column; 
       width: 280px;      
       margin-bottom: 100px;
     }
-    .searchBar button {
+   .searchBar button {
       padding: 20px 20px;
     }
   }

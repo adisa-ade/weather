@@ -7,6 +7,7 @@
   --neutral-300: hsl(240, 6%, 70%);
   --neutral-200: hsl(250, 6%, 84%);
   --neutral-0: hsl(0, 0%, 100%);
+  --neutral-bg: #262540;
 
   /* Orange */
   --orange-500: hsl(28, 100%, 52%);
@@ -74,9 +75,30 @@ h2.title {
   justify-content: space-between;         
   min-width: 0;  
 }
+
 .info-grid > div {
   min-width: 0;         
 }
+
+.units-btn{
+  background-color: var(--neutral-600);
+  color: var(--neutral-0);
+  height: 40px;
+  padding: 10px;
+  border: 0;  
+  outline: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.btn-children{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
 @keyframes slideIn {
   to {
     opacity: 1;
@@ -90,13 +112,29 @@ h2.title {
   animation: fadeUp 0.6s ease forwards;
 }
 
+.isLoading{
+  background-color: var(--neutral-700);
+  height: 286px;    
+  border-radius: 16px;    
+}
+.ld-content{
+  display: flex;
+  flex-direction: column;  
+  align-items: center;
+  margin-top: 80px;  
+  animation: pulse 1.5s ease-out infinite;
+}
+@keyframes pulse {
+  0% { transform: scale(1)}
+  70% { transform: scale(1.2)}
+  100% { transform: scale(1)}
+}
 @keyframes fadeUp {
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
-
 
 /* Tablet */
 @media (max-width: 56.25em) {
