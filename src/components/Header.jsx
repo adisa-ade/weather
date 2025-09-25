@@ -6,7 +6,7 @@ function Header() {
         <span className="logo">
           <img src="/images/logo.svg" alt="Logo" />
         </span>
-        <Button>Units</Button>
+        <Button><div><img src="./images/icon-units.svg" alt="unit-icon" /></div>Units</Button>
       </header>
     );
   }
