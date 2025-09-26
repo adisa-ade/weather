@@ -1,6 +1,7 @@
 export const initialState = {
   loading: false,
   error: null,
+  toggle: false,
   weather: null,
   theme: "light",
   city: "",
@@ -18,6 +19,8 @@ export function weatherReducer(state, action) {
       return { ...state, city: action.payload };
     case "TOGGLE_THEME":
       return { ...state, theme: state.theme === "light" ? "dark" : "light" };
+    case "TOGGLE_BUTTON":
+      return { ...state, toggle: state.toggle === false ? true : false };
     default:
       return state;
   }

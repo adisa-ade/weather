@@ -16,7 +16,7 @@ function WeatherCard() {
         </div>
         <div className={styles.temperature}>
         <img src="./images/icon-sunny.webp" alt="" />
-        <h1>{weather?.current.temperature_2m}</h1>
+        <h1>{weather?.current.temperature_2m}°</h1>
         </div>
         </>
         :

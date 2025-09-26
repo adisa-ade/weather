@@ -1,18 +1,22 @@
+import { useContext } from "react";
 import Header from "./components/Header";
 import SearchBar from "./components/SearchBar";
 import WeatherCard from "./components/WeatherCard";
 import InfoCards from "./components/InfoCards";
 import DailyForecast from "./components/DailyForecast";
 import HourlyForecast from "./components/HourlyForecast";
+import WeatherContext from "./context/WeatherContext";
 import "./App.css";
-
 function App() {
+  const { state} = useContext(WeatherContext);
+  const { weather} = state;   
   return (
     <div className="app">
       <Header />
       <h2 className="title">How’s the sky looking today?</h2>
       <SearchBar />      
-      <div className="info-grid">                
+      {weather &&
+       <div className="info-grid">                
       <div className="left-info-grid">
       <WeatherCard />
       <InfoCards />
@@ -24,7 +28,8 @@ function App() {
       <div>          
       <HourlyForecast />
       </div>      
-      </div>      
+      </div>  
+      }    
     </div>
   );
 }

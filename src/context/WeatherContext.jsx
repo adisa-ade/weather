@@ -26,7 +26,7 @@ export const WeatherProvider = ({ children }) => {
 
       // Fetch weather using coordinates
       const weatherRes = await fetch(                                
-        `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=temperature_2m_max,temperature_2m_min,&current=temperature_2m,precipitation,wind_speed_10m,relative_humidity_2m&timezone=auto`
+        `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&houly=,&daily=temperature_2m_max,temperature_2m_min,&current=temperature_2m,precipitation,wind_speed_10m,relative_humidity_2m&timezone=auto`
       );
       const weatherData = await weatherRes.json();      
       const formattedDate = formatDate(weatherData.current.time);         
@@ -49,7 +49,8 @@ export const WeatherProvider = ({ children }) => {
           try {
             // Fetch weather from Open-Meteo
             const weatherRes = await fetch(                                                                              
-              `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=temperature_2m_max,temperature_2m_min,&current=temperature_2m,precipitation,wind_speed_10m,relative_humidity_2m&timezone=auto`
+              // `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=temperature_2m_max,temperature_2m_min,&current=temperature_2m,precipitation,wind_speed_10m,relative_humidity_2m&timezone=auto`
+              `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,&daily=temperature_2m_max,temperature_2m_min,&current=temperature_2m,precipitation,wind_speed_10m,relative_humidity_2m&timezone=auto`
             );            
             const weatherData = await weatherRes.json();             
             // Fetch city name from BigDataCloud (reverse geocoding)            
@@ -75,7 +76,7 @@ export const WeatherProvider = ({ children }) => {
           }
         },
         (err) => {
-          console.warn("Geolocation denied:", err.message);  
+          // console.warn("Geolocation denied:", err.message);  
           fetchWeather("Canada");
         }
       );
