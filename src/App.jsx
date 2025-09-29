@@ -15,7 +15,7 @@ function App() {
       <Header />
       <h2 className="title">How’s the sky looking today?</h2>
       <SearchBar />      
-      {weather &&
+      
        <div className="info-grid">                
       <div className="left-info-grid">
       <WeatherCard />
@@ -29,7 +29,7 @@ function App() {
       <HourlyForecast />
       </div>      
       </div>  
-      }    
+      
     </div>
   );
 }

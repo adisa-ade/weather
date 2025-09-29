@@ -1,34 +1,33 @@
-import { useReducer } from "react";
-
-import Button from "./Button";
+import { useState } from "react";
 import styles from "./Header.module.css"
-import { initialState, weatherReducer } from "../reducer/weatherReducer";
-function Header() {`1`  
-  const [state, dispatch] = useReducer(weatherReducer, initialState);    
-  console.log(state.toggle)
+import Settings from "./Settings"
+
+
+function Header() {  
+  
+  const [isOpen, setIsOpen] = useState(false)  
     return (
       <header className={styles.header}>
         <span className="logo">
           <img src="/images/logo.svg" alt="Logo" />
         </span>
-        <button className='units-btn'> 
+        <div>
+        <button className='units-btn' onClick={() => setIsOpen(!isOpen)}>           
         <div>
          <img src="./images/icon-units.svg" alt="unit-icon" />
         </div>                
-          <span 
-          onClick={() =>
-           dispatch ({ 
-            type: "TOGGLE_BUTTON",
-            payload:{...state, toggle: false},
-            })
-            }
-            >          
+          <span>          
           Units
         </span>  
         <div>
           <img src="./images/icon-dropdown.svg" alt="dropdown-icon" />
           </div>
-        </button>
+        </button>        
+        {isOpen && <div className="day-picker">
+          <Settings />
+        </div>
+           }
+        </div >
       </header>
     );
   }

@@ -19,13 +19,11 @@
     align-items: center;
     height: 60px;  
     padding: 10px 16px 10px 12px;  
+    margin: 10px 0;
     background: #2a2a60;
     border-radius: 8px;
   }
-  .hour > span{ 
-    display: flex;
-    gap: 20px;
-  }
+  
   .slide-in {
     opacity: 0;
     transform: translateX(-20px);

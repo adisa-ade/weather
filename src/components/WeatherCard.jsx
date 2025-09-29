@@ -4,8 +4,7 @@ import WeatherContext from "../context/WeatherContext";
 
 function WeatherCard() {
     const { state} = useContext(WeatherContext);
-    const { loading, error, weather } = state;   
-    
+    const { loading, error, weather } = state;       
     return (                 
       <div className={`${loading ? 'isLoading' : styles.weatherCard }`}>                           
         {!loading ?

@@ -1,11 +1,22 @@
-import React, { createContext, useReducer, useEffect } from "react";
+import React, { createContext, useReducer, useEffect, useState } from "react";
 import { weatherReducer, initialState } from "../reducer/weatherReducer";
 import { formatDate } from "../utils/formDate";
 
 const WeatherContext = createContext();
 
-export const WeatherProvider = ({ children }) => {
+export const WeatherProvider = ({ children }) => {  
   const [state, dispatch] = useReducer(weatherReducer, initialState);
+  
+  const unitSystem = state.unitSystem
+  // const temperatureUnit = state.temperatureUnit
+  // const windSpeedUnit = state.windSpeedUnit
+  // const precipitationUnit = state.precipitationUnit
+
+  const params =
+  unitSystem === "metric"
+    ?
+    ""    
+    : "temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch";
 
 // Search for a city weather
   async function fetchWeather(cityName) {    
@@ -26,20 +37,20 @@ export const WeatherProvider = ({ children }) => {
 
       // Fetch weather using coordinates
       const weatherRes = await fetch(                                
-        `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&houly=,&daily=temperature_2m_max,temperature_2m_min,&current=temperature_2m,precipitation,wind_speed_10m,relative_humidity_2m&timezone=auto`
+        `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,&daily=temperature_2m_max,temperature_2m_min,&current=temperature_2m,precipitation,wind_speed_10m,relative_humidity_2m&timezone=auto&${params}`        
       );
       const weatherData = await weatherRes.json();      
       const formattedDate = formatDate(weatherData.current.time);         
       dispatch({
         type: "FETCH_SUCCESS",
-        payload: { ...weatherData, city: `${name}, ${country}`,  coords: { lat: latitude, lon: longitude }, formattedDate},
+        payload: { ...weatherData, city: `${name}, ${country}`,  coords: { lat: latitude, lon: longitude }, formattedDate, unitSystem},
       });
     } catch (err) {
       dispatch({ type: "FETCH_ERROR", payload: err.message });
     }
   }
   
-   useEffect(() => {    
+   useEffect(() => {        
         if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         async (pos) => {
@@ -49,8 +60,7 @@ export const WeatherProvider = ({ children }) => {
           try {
             // Fetch weather from Open-Meteo
             const weatherRes = await fetch(                                                                              
-              // `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=temperature_2m_max,temperature_2m_min,&current=temperature_2m,precipitation,wind_speed_10m,relative_humidity_2m&timezone=auto`
-              `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,&daily=temperature_2m_max,temperature_2m_min,&current=temperature_2m,precipitation,wind_speed_10m,relative_humidity_2m&timezone=auto`
+              `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,&daily=temperature_2m_max,temperature_2m_min,&current=temperature_2m,precipitation,wind_speed_10m,relative_humidity_2m&timezone=auto&${params}`        
             );            
             const weatherData = await weatherRes.json();             
             // Fetch city name from BigDataCloud (reverse geocoding)            
@@ -67,7 +77,8 @@ export const WeatherProvider = ({ children }) => {
               type: "FETCH_SUCCESS",
               payload: {
                 ...weatherData,
-                city: cityName,                
+                city: cityName,
+                unitSystem,                  
                 formattedDate
               },
             });
@@ -84,7 +95,7 @@ export const WeatherProvider = ({ children }) => {
       // fallback if geolocation not supported
       fetchWeather("Canada");
     }
-  }, []);
+  }, [unitSystem]);
   
 
   return (
@@ -93,5 +104,4 @@ export const WeatherProvider = ({ children }) => {
     </WeatherContext.Provider>
   );
 };
-
-export default WeatherContext;
+export default WeatherContext
