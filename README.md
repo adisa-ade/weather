@@ -25,7 +25,7 @@ A responsive weather forecast application built with **React.js** and **Vanilla 
 ## Preview
 
 ### Desktop Screen
-![Desktop Screenshot](./public/images/screenshot.png)
+![Desktop Screenshot](./public/images/desktop.png)
 
 ### Tablet Screen
 ![Tablet Screenshot](./public/images/darkmode.png)
