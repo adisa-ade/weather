@@ -37,7 +37,7 @@ export const WeatherProvider = ({ children }) => {
 
       // Fetch weather using coordinates
       const weatherRes = await fetch(                                
-        `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,&daily=temperature_2m_max,temperature_2m_min,&current=temperature_2m,precipitation,wind_speed_10m,relative_humidity_2m&timezone=auto&${params}`        
+        `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,&daily=weather_code,temperature_2m_max,temperature_2m_min,&current=temperature_2m,precipitation,wind_speed_10m,relative_humidity_2m&timezone=auto&${params}`        
       );
       const weatherData = await weatherRes.json();      
       const formattedDate = formatDate(weatherData.current.time);         
@@ -59,8 +59,8 @@ export const WeatherProvider = ({ children }) => {
   
           try {
             // Fetch weather from Open-Meteo
-            const weatherRes = await fetch(                                                                              
-              `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,&daily=temperature_2m_max,temperature_2m_min,&current=temperature_2m,precipitation,wind_speed_10m,relative_humidity_2m&timezone=auto&${params}`        
+            const weatherRes = await fetch(                                                                                            
+              `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,&daily=weather_code,temperature_2m_max,temperature_2m_min,&current=temperature_2m,precipitation,wind_speed_10m,relative_humidity_2m&timezone=auto&${params}`        
             );            
             const weatherData = await weatherRes.json();             
             // Fetch city name from BigDataCloud (reverse geocoding)            
