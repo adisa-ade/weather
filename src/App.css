@@ -163,6 +163,9 @@ h2.title {
   font-size: 12px;
   color: #58a6ff;
 }
+.option.selected:first-child::after {
+  content: none; 
+}
 .day-picker{
   margin-top: 5px;
 }

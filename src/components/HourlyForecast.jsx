@@ -9,7 +9,6 @@ function HourlyForecast() {
 
   const [isOpen, setIsOpen] = useState(false);
 
-  // console.log(weather)
   // track "now" so forecast updates over time
   const [now, setNow] = useState(new Date());
 
@@ -68,18 +67,18 @@ function HourlyForecast() {
         <h3>Hourly Forecast</h3>
         <div>
           <button
-            className="units-btn"
-            onClick={() => setIsOpen((prev) => !prev)}
+            className="units-btn"            
+            onClick={() => setIsOpen(!isOpen)}
           >
             <span>{selectedDay}</span>
             <img src="./images/icon-dropdown.svg" alt="dropdown-icon" />
           </button>
 
           {isOpen && (
-            <DayPicker
+            <DayPicker              
+              isOpen={isOpen} onClose={() => setIsOpen(false)}
               onSelectDay={(day) => {
-                setSelectedDay(day);
-                setIsOpen(false);
+                setSelectedDay(day);                
               }}
               days={Object.keys(grouped)}
             />

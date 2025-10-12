@@ -8,16 +8,21 @@ export const WeatherProvider = ({ children }) => {
   const [state, dispatch] = useReducer(weatherReducer, initialState);
   
   const unitSystem = state.unitSystem
-  // const temperatureUnit = state.temperatureUnit
-  // const windSpeedUnit = state.windSpeedUnit
-  // const precipitationUnit = state.precipitationUnit
-
-  const params =
-  unitSystem === "metric"
-    ?
-    ""    
-    : "temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch";
-
+  const temperatureUnit = state.temperatureUnit
+  const windSpeedUnit = state.windSpeedUnit
+  const precipitationUnit = state.precipitationUnit
+   
+  let params = ""  
+  if (unitSystem === "imperial") {  
+    params = "temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch";
+  } else {        
+    const parts = [
+      temperatureUnit !== "celsius" && "temperature_unit=fahrenheit",
+      windSpeedUnit !== "km" && "windspeed_unit=mph",
+      precipitationUnit !== "mm" && "precipitation_unit=inch",
+      ].filter(Boolean);   
+    params = parts.join("&");    
+  }  
 // Search for a city weather
   async function fetchWeather(cityName) {    
     dispatch({ type: "FETCH_START" });
@@ -31,19 +36,24 @@ export const WeatherProvider = ({ children }) => {
       if (!geoData.results || geoData.results.length === 0) {
         throw new Error("City not found");
       }
-
-      // console.log(geoData.results)
+      
       const { latitude, longitude, name, country } = geoData.results[0];      
 
       // Fetch weather using coordinates
       const weatherRes = await fetch(                                
-        `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,&daily=weather_code,temperature_2m_max,temperature_2m_min,&current=temperature_2m,precipitation,wind_speed_10m,relative_humidity_2m&timezone=auto&${params}`        
+        `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,&daily=weather_code,temperature_2m_max,temperature_2m_min,&current=temperature_2m,precipitation,wind_speed_10m,relative_humidity_2m&timezone=auto&${params ? `&${params}` : ""}`                
       );
       const weatherData = await weatherRes.json();      
       const formattedDate = formatDate(weatherData.current.time);         
       dispatch({
         type: "FETCH_SUCCESS",
-        payload: { ...weatherData, city: `${name}, ${country}`,  coords: { lat: latitude, lon: longitude }, formattedDate, unitSystem},
+        payload: { ...weatherData, city: `${name}, ${country}`,  coords: { lat: latitude, lon: longitude },
+        formattedDate,
+        unitSystem,
+        temperatureUnit,
+        windSpeedUnit,
+        precipitationUnit,        
+      },
       });
     } catch (err) {
       dispatch({ type: "FETCH_ERROR", payload: err.message });
@@ -59,10 +69,10 @@ export const WeatherProvider = ({ children }) => {
   
           try {
             // Fetch weather from Open-Meteo
-            const weatherRes = await fetch(                                                                                            
-              `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,&daily=weather_code,temperature_2m_max,temperature_2m_min,&current=temperature_2m,precipitation,wind_speed_10m,relative_humidity_2m&timezone=auto&${params}`        
+            const weatherRes = await fetch(                                                                                                          
+              `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,&daily=weather_code,temperature_2m_max,temperature_2m_min,&current=temperature_2m,precipitation,wind_speed_10m,relative_humidity_2m&timezone=auto&${params ? `&${params}` : ""}`                      
             );            
-            const weatherData = await weatherRes.json();             
+            const weatherData = await weatherRes.json();                         
             // Fetch city name from BigDataCloud (reverse geocoding)            
             const geoRes = await fetch(
                 `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`
@@ -78,7 +88,7 @@ export const WeatherProvider = ({ children }) => {
               payload: {
                 ...weatherData,
                 city: cityName,
-                unitSystem,                  
+                unitSystem,                         
                 formattedDate
               },
             });
@@ -87,7 +97,7 @@ export const WeatherProvider = ({ children }) => {
           }
         },
         (err) => {
-          // console.warn("Geolocation denied:", err.message);  
+          
           fetchWeather("Canada");
         }
       );
@@ -95,7 +105,7 @@ export const WeatherProvider = ({ children }) => {
       // fallback if geolocation not supported
       fetchWeather("Canada");
     }
-  }, [unitSystem]);
+  }, [unitSystem, temperatureUnit, windSpeedUnit, precipitationUnit]);
   
 
   return (

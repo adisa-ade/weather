@@ -24,7 +24,7 @@ function Header() {
           </div>
         </button>        
         {isOpen && <div className="day-picker">
-          <Settings />
+          <Settings isOpen={isOpen} onClose={() => setIsOpen(false)}/>
         </div>
            }
         </div >
